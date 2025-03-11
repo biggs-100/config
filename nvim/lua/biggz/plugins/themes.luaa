@@ -1,0 +1,83 @@
+return {
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true, -- Fondo transparente
+      dimInactive = false, -- No atenuar ventanas inactivas
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = "none", -- Sin fondo en los números de línea
+            },
+          },
+        },
+      },
+      overrides = function()
+        return {
+          -- Grupos básicos de Vim
+          Normal = { fg = "#DCD7BA", bg = "NONE" }, -- Blanco crema
+          Comment = { fg = "#727169", italic = true }, -- Gris claro
+          Function = { fg = "#7E9CD8", bold = true, italic = true }, -- Azul claro saturado
+          Variable = { fg = "#C0A36E" }, -- Beige saturado
+          Keyword = { fg = "#FFA066", italic = true }, -- Naranja saturado
+          Constant = { fg = "#E46876" }, -- Rojo saturado
+          String = { fg = "#98BB6C", italic = true }, -- Verde claro saturado
+          Identifier = { fg = "#DCD7BA" }, -- Azul cian saturado
+          Statement = { fg = "#FFA066" }, -- Naranja saturado
+          PreProc = { fg = "#FFA066" }, -- Naranja saturado
+          Type = { fg = "#7E9CD8" }, -- Azul claro saturado
+          NormalFloat = { bg = "NONE" },
+          FloatBorder = { fg = "#DCD7BA", bg = "NONE" }, -- Blanco crema
+          VertSplit = { fg = "#54546D", bg = "NONE" }, -- Gris oscuro
+          WinSeparator = { fg = "#54546D", bg = "NONE" }, -- Gris oscuro
+          CursorLine = { bg = "#363646" }, -- Color oscuro para la línea del cursor
+          Visual = { bg = "#363646", fg = "#DCD7BA" }, -- Texto seleccionado (gris oscuro)
+
+          -- Grupos de Treesitter
+          ["@variable"] = { fg = "#C0A36E" }, -- Beige saturado
+          ["@identifier"] = { fg = "#DCD7BA" }, -- Azul cian saturado
+          ["@function"] = { fg = "#7E9CD8", bold = true, italic = true }, -- Azul claro saturado
+          ["@keyword"] = { fg = "#FFA066", italic = true }, -- Naranja saturado
+          ["@constant"] = { fg = "#E46876" }, -- Rojo saturado
+          ["@string"] = { fg = "#98BB6C", italic = true }, -- Verde claro saturado
+          ["@type"] = { fg = "#7E9CD8" }, -- Azul claro saturado
+          ["@statement"] = { fg = "#FFA066" }, -- Naranja saturado
+          ["@preproc"] = { fg = "#FFA066" }, -- Naranja saturado
+          ["@comment"] = { fg = "#727169", italic = true }, -- Gris claro
+        }
+      end,
+      show_end_of_buffer = false, -- No mostrar ~ al final del buffer
+    },
+    config = function(_, opts)
+      require("kanagawa").setup(opts)
+
+      -- Aplicar el tema Dragon
+      vim.cmd.colorscheme("kanagawa-dragon")
+
+      -- Forzar compatibilidad con Treesitter y bordes después de cargar todo
+      vim.api.nvim_set_hl(0, "@variable", { fg = "#C0A36E" }) -- Beige saturado
+      vim.api.nvim_set_hl(0, "@identifier", { fg = "#CDC7BA" }) -- Azul cian saturado
+      vim.api.nvim_set_hl(0, "@string", { fg = "#98BB6C", italic = true }) -- Verde claro saturado
+      vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#DCD7BA", bg = "NONE" }) -- Blanco crema
+      vim.api.nvim_set_hl(0, "VertSplit", { fg = "#54546D", bg = "NONE" }) -- Gris oscuro
+      vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#54546D", bg = "NONE" }) -- Gris oscuro
+      vim.api.nvim_set_hl(0, "CursorLine", { bg = "#363646" }) -- Color oscuro para la línea del cursor
+      vim.api.nvim_set_hl(0, "Visual", { bg = "#363646", fg = "#DCD7BA" }) -- Texto seleccionado (gris oscuro)
+
+      -- Autocomando para forzar la actualización después de cargar el colorscheme
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "*",
+        callback = function()
+          vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#DCD7BA", bg = "NONE" }) -- Blanco crema
+          vim.api.nvim_set_hl(0, "VertSplit", { fg = "#54546D", bg = "NONE" }) -- Gris oscuro
+          vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#54546D", bg = "NONE" }) -- Gris oscuro
+          vim.api.nvim_set_hl(0, "CursorLine", { bg = "#363646" }) -- Color oscuro para la línea del cursor
+          vim.api.nvim_set_hl(0, "Visual", { bg = "#363646", fg = "#DCD7BA" }) -- Texto seleccionado (gris oscuro)
+        end,
+      })
+    end,
+  },
+}

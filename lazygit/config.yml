@@ -1,0 +1,99 @@
+# Personalización de colores (tema Kanagawa Dark)
+gui:
+  theme:
+    activeBorderColor:
+      - "#7E9CD8" # Azul claro saturado (Kanagawa Dark)
+    inactiveBorderColor:
+      - "#54546D" # Gris oscuro
+    optionsTextColor:
+      - "#DCD7BA" # Blanco crema
+    selectedLineBgColor:
+      - "#363646" # Color de fondo para la línea seleccionada (CursorLine)
+    selectedRangeBgColor:
+      - "#363646" # Color de fondo para el rango seleccionado
+    cherryPickedCommitBgColor:
+      - "#98BB6C" # Verde claro saturado
+    cherryPickedCommitFgColor:
+      - "#1F1F28" # Fondo oscuro
+    unstagedChangesColor:
+      - "#E46876" # Rojo saturado
+    defaultFgColor:
+      - "#DCD7BA" # Texto claro
+    defaultBgColor:
+      - "#1F1F28" # Fondo oscuro (Kanagawa Dark)
+
+# Mostrar una línea divisoria entre paneles
+showDivider: true
+
+# Tamaño de la ventana
+screenMode: "normal" # Opciones: normal, half, full
+
+# Mostrar el panel de ayuda al inicio
+showStartupPopups: false
+
+# Personalización de atajos de teclado
+keybinding:
+  universal:
+    quit: "q" # Salir de lazygit
+    quitWithoutChangingDirectory: "Q" # Salir sin cambiar de directorio
+    togglePanel: "<tab>" # Alternar entre paneles
+    nextItem: "j" # Mover al siguiente elemento
+    prevItem: "k" # Mover al elemento anterior
+    nextPage: "]" # Página siguiente
+    prevPage: "[" # Página anterior
+    scrollLeft: "h" # Desplazar a la izquierda
+    scrollRight: "l" # Desplazar a la derecha
+    confirm: "<enter>" # Confirmar acción
+    return: "<esc>" # Volver al menú anterior
+    copyToClipboard: "y" # Copiar al portapapeles
+    pasteFromClipboard: "p" # Pegar desde el portapapeles
+
+  status:
+    checkForUpdate: "u" # Buscar actualizaciones
+
+  files:
+    commitChanges: "c" # Hacer commit
+    amendLastCommit: "A" # Modificar el último commit
+    openMergeTool: "M" # Abrir herramienta de fusión
+    openFilteringMenu: "f" # Abrir menú de filtrado
+
+  branches:
+    createPullRequest: "P" # Crear un pull request
+    checkoutBranchByName: "b" # Cambiar a una rama por nombre
+    mergeIntoCurrentBranch: "m" # Fusionar en la rama actual
+
+  commits:
+    squashDown: "s" # Combinar commit con el anterior
+    renameCommit: "r" # Renombrar commit
+    resetToCommit: "R" # Resetear a un commit específico
+
+  stash:
+    stashChanges: "s" # Guardar cambios en el stash
+    applyStash: "a" # Aplicar cambios del stash
+
+  submodules:
+    updateSubmodule: "u" # Actualizar submódulo
+
+# Configuración de Git
+git:
+  # Autocompletado de ramas
+  autoFetch: true
+  fetchAll: true
+
+  # Mostrar cambios en tiempo real
+  log:
+    showGraph: true
+    order: "date-order" # Ordenar commits por fecha
+
+  # Configuración de fusión
+  merge:
+    args: "--no-ff" # Evitar fusión rápida (fast-forward)
+
+  # Configuración de rebase
+  rebase:
+    args: "--interactive" # Rebase interactivo
+
+# Configuración de actualización
+update:
+  method: "prompt" # Método de actualización (prompt, background, never)
+
